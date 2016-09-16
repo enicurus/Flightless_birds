@@ -60,11 +60,6 @@ JAFFlight<-matrix(JAFstates$flight);rownames(JAFFlight)<-JAFstates$treeTips
 
 ###run this over the trees and get lambda and aic for all 
 
-BurBI<-llply(Burleigh,multi2di,.progress="text")
-JGBI<-llply(JG,multi2di,.progress="text")
-JGFBI<-llply(JGF,multi2di,.progress="text")
-JABI<-llply(JA,multi2di,.progress="text")
-JAFBI<-llply(JAF,multi2di,.progress="text")
 
 
 
