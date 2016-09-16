@@ -77,6 +77,24 @@ JAFlightLambda<-llply(JABI,fitDiscrete,JAFlight,transform="lambda",.progress="te
 JAFFlightLambda<-llply(JAFBI,fitDiscrete,JAFFlight,transform="lambda",.progress="text")
 
 
+####Lambda and K using phytools
+
+BurleighFlightLambdaphytools<-llply(BurBI,phylosig,BurFlight,method="lambda",test=TRUE,.progress="text")
+JGFlightLambdaphytools<-llply(JGBI,fitDiscrete,JGFlight,method="lambda",test=TRUE,.progress="text")
+JGFFlightLambdaphytools<-llply(JGFBI,fitDiscrete,JGFFlight,method="lambda",test=TRUE,.progress="text")
+JAFlightLambdaphytools<-llply(JABI,fitDiscrete,JAFlight,method="lambda",test=TRUE,.progress="text")
+JAFFlightLambdaphytools<-llply(JAFBI,fitDiscrete,JAFFlight,method="lambda",test=TRUE,.progress="text")
+
+
+BurleighFlightKphytools<-llply(BurBI,phylosig,BurFlight,method="K",test=TRUE,.progress="text")
+JGFlightKphytools<-llply(JGBI,fitDiscrete,JGFlight,method="K",test=TRUE,.progress="text")
+JGFFlightKphytools<-llply(JGFBI,fitDiscrete,JGFFlight,method="K",test=TRUE,.progress="text")
+JAFlightKphytools<-llply(JABI,fitDiscrete,JAFlight,method="K",test=TRUE,.progress="text")
+JAFFlightKphytools<-llply(JAFBI,fitDiscrete,JAFFlight,method="K",test=TRUE,.progress="text")
+
+
+
+
 BFLam<-matrix(nrow=length(BurleighFlightLambda),ncol=2)
 
 for(i in 1:length(BurleighFlightLambda)){
