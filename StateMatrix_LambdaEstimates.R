@@ -77,6 +77,23 @@ JAFlightLambda<-llply(JABI,fitDiscrete,JAFlight,transform="lambda",.progress="te
 JAFFlightLambda<-llply(JAFBI,fitDiscrete,JAFFlight,transform="lambda",.progress="text")
 
 
+
+BurleighFlightK<-llply(BurBI,fitDiscrete,BurFlight,method="K",test=TRUE,.progress="text")
+JGFlightK<-llply(JGBI,fitDiscrete,JGFlight,method="K",test=TRUE,.progress="text")
+JGFFlightK<-llply(JGFBI,fitDiscrete,fitDiscrete,method="K",test=TRUE,.progress="text")
+JAFlightK<-llply(JABI,fitDiscrete,fitDiscrete,method="K",test=TRUE,.progress="text")
+JAFFlightK<-llply(JAFBI,fitDiscrete,fitDiscrete,method="K",test=TRUE,.progress="text")
+
+
+save(BurleighFlightK,file="~/Dropbox/Flightless_project/Results/fitDiscrete_Results/Burleigh_K.RData")
+save(JGFlightK,file="~/Dropbox/Flightless_project/Results/fitDiscrete_Results/Jetz_Gene_K.RData")
+save(JGFFlightK,file="~/Dropbox/Flightless_project/Results/fitDiscrete_Results/Jetz_Gene_Flightless_K.RData")
+save(JAFlightK,file="~/Dropbox/Flightless_project/Results/fitDiscrete_Results/Jetz_All_K.RData")
+save(JAFFlightK,file="~/Dropbox/Flightless_project/Results/fitDiscrete_Results/Jetz_All_Flightless_K.RData")
+
+
+
+
 ####Lambda and K using phytools
 
 BurleighFlightLambdaphytools<-llply(BurBI,phylosig,BurFlight,method="lambda",test=TRUE,.progress="text")
