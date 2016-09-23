@@ -38,7 +38,7 @@ JG<-read.nexus("~/Dropbox/Flightless_project/Trees/All_Birds/Jetz_gene.nex")
 JGF<-read.nexus("/Users/ryanterrill/Dropbox/Flightless_project/Trees/All_Birds/JGF_final.nexus")
 
 JA<-read.nexus("~/Dropbox/Flightless_project/Trees/All_Birds/Jetz_all.nex")
-JAF<-read.nexus("~/Dropbox/Flightless_project/Trees/All_Birds/JetzallFlightless.nex")
+JAF<-read.nexus("~/Dropbox/Flightless_project/Trees/All_Birds/Jetz_all_Flightless.nexus")
 
 Bstates<-stateMatrix(Burleigh,flightless,simultaneous)
 JGstates<-stateMatrix(JG,flightless,simultaneous)
