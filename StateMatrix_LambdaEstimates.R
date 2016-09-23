@@ -80,9 +80,9 @@ JAFFlightLambda<-llply(JAFBI,fitDiscrete,JAFFlight,transform="lambda",.progress=
 
 BurleighFlightK<-llply(BurBI,fitDiscrete,BurFlight,method="K",test=TRUE,.progress="text")
 JGFlightK<-llply(JGBI,fitDiscrete,JGFlight,method="K",test=TRUE,.progress="text")
-JGFFlightK<-llply(JGFBI,fitDiscrete,fitDiscrete,method="K",test=TRUE,.progress="text")
-JAFlightK<-llply(JABI,fitDiscrete,fitDiscrete,method="K",test=TRUE,.progress="text")
-JAFFlightK<-llply(JAFBI,fitDiscrete,fitDiscrete,method="K",test=TRUE,.progress="text")
+JGFFlightK<-llply(JGFBI,fitDiscrete,JGFFlight,method="K",test=TRUE,.progress="text")
+JAFlightK<-llply(JABI,fitDiscrete,JAflight,method="K",test=TRUE,.progress="text")
+JAFFlightK<-llply(JAFBI,fitDiscrete,JAFFlight,method="K",test=TRUE,.progress="text")
 
 
 save(BurleighFlightK,file="~/Dropbox/Flightless_project/Results/fitDiscrete_Results/Burleigh_K.RData")
