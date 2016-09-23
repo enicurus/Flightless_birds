@@ -29,7 +29,7 @@ stateMatrix<-function(tree,flightless,simultaneous){
 F<-read.csv("~/Dropbox/Flightless_project/Trees/All_Birds/Flightless_taxa.csv")
 flightless<-F$Flightless_taxa
 
-S<-read.csv("Dropbox/Flightless_project/Simultaneous_species.csv",header=FALSE)
+S<-read.csv("~/Dropbox/Flightless_project/Simultaneous_species.csv",header=FALSE)
 simultaneous<-S$V1
 
 
