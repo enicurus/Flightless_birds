@@ -176,8 +176,8 @@ save(JAFlightLambda,file="~/Dropbox/Flightless_project/Results/fitDiscrete_Resul
 save(JAFFlightLambda,file="~/Dropbox/Flightless_project/Results/fitDiscrete_Results/Jetz_All_Flightless_lambda.RData")
 
 n<-rep(NA,(1000-101))
-burLambda<-c(BFLam[,1],n)
-treeLambdas<-data.frame(burLambda,JGFLam[,1],JGFFLam[,1],JAFLam[,1],JAFFLam[,1])
+burLambda<-c(BFLam[,2],n)
+treeLambdas<-data.frame(burLambda,JGFLam[,2],JGFFLam[,1],JAFLam[,2],JAFFLam[,2])
 colnames(treeLambdas)<-c("Burleigh","Jetz Gene","Jetz Gene +\n Flightless","Jetz All","Jetz All +\n Flightless")
 colnames(treeLambdas)<-c("Burleigh","Jetz Gene","Jetz Gene +\n Flightless","Jetz All","Jetz All +\n Flightless")
 
