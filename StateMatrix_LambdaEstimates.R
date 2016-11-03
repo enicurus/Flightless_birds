@@ -84,6 +84,7 @@ JGFFlightK<-llply(JGFBI,fitDiscrete,JGFFlight,method="K",test=TRUE,.progress="te
 JAFlightK<-llply(JABI,fitDiscrete,JAflight,method="K",test=TRUE,.progress="text")
 JAFFlightK<-llply(JAFBI,fitDiscrete,JAFFlight,method="K",test=TRUE,.progress="text")
 
+###these files are huge - just save the Lambda, P, and AIC values as text files instead
 
 save(BurleighFlightK,file="~/Dropbox/Flightless_project/Results/fitDiscrete_Results/Burleigh_K.RData")
 save(JGFlightK,file="~/Dropbox/Flightless_project/Results/fitDiscrete_Results/Jetz_Gene_K.RData")
