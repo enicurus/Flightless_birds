@@ -69,20 +69,27 @@ JAFBI<-llply(JAF,multi2di,.progress="text")
 
 
 
-
+#Equal rates models
 BurleighFlightLambda<-llply(BurBI,fitDiscrete,BurFlight,transform="lambda",.progress="text")
 JGFlightLambda<-llply(JGBI,fitDiscrete,JGFlight,transform="lambda",.progress="text")
 JGFFlightLambda<-llply(JGFBI,fitDiscrete,JGFFlight,transform="lambda",.progress="text")
 JAFlightLambda<-llply(JABI,fitDiscrete,JAFlight,transform="lambda",.progress="text")
 JAFFlightLambda<-llply(JAFBI,fitDiscrete,JAFFlight,transform="lambda",.progress="text")
 
+#ARD Models
+BurleighFlightLambda<-llply(BurBI,fitDiscrete,BurFlight,transform="lambda",model="ARD",.progress="text")
+JGFlightLambda<-llply(JGBI,fitDiscrete,JGFlight,transform="lambda",model="ARD",.progress="text")
+JGFFlightLambda<-llply(JGFBI,fitDiscrete,JGFFlight,transform="lambda",model="ARD",.progress="text")
+JAFlightLambda<-llply(JABI,fitDiscrete,JAFlight,transform="lambda",model="ARD",.progress="text")
+JAFFlightLambda<-llply(JAFBI,fitDiscrete,JAFFlight,transform="lambda",model="ARD",.progress="text")
 
 
-BurleighFlightK<-llply(BurBI,fitDiscrete,BurFlight,method="K",test=TRUE,.progress="text")
-JGFlightK<-llply(JGBI,fitDiscrete,JGFlight,method="K",test=TRUE,.progress="text")
-JGFFlightK<-llply(JGFBI,fitDiscrete,JGFFlight,method="K",test=TRUE,.progress="text")
-JAFlightK<-llply(JABI,fitDiscrete,JAflight,method="K",test=TRUE,.progress="text")
-JAFFlightK<-llply(JAFBI,fitDiscrete,JAFFlight,method="K",test=TRUE,.progress="text")
+
+BurleighFlightK<-llply(BurBI,fitDiscrete,BurFlight,transform="K",test=TRUE,.progress="text")
+JGFlightK<-llply(JGBI,fitDiscrete,JGFlight,transform="K",test=TRUE,.progress="text")
+JGFFlightK<-llply(JGFBI,fitDiscrete,JGFFlight,transform="K",test=TRUE,.progress="text")
+JAFlightK<-llply(JABI,fitDiscrete,JAflight,transform="K",test=TRUE,.progress="text")
+JAFFlightK<-llply(JAFBI,fitDiscrete,JAFFlight,transform="K",test=TRUE,.progress="text")
 
 ###these files are huge - just save the Lambda, P, and AIC values as text files instead
 
@@ -93,22 +100,6 @@ save(JAFlightK,file="~/Dropbox/Flightless_project/Results/fitDiscrete_Results/Je
 save(JAFFlightK,file="~/Dropbox/Flightless_project/Results/fitDiscrete_Results/Jetz_All_Flightless_K.RData")
 
 
-
-
-####Lambda and K using phytools
-
-BurleighFlightLambdaphytools<-llply(BurBI,phylosig,BurFlight,method="lambda",test=TRUE,.progress="text")
-JGFlightLambdaphytools<-llply(JGBI,fitDiscrete,JGFlight,method="lambda",test=TRUE,.progress="text")
-JGFFlightLambdaphytools<-llply(JGFBI,fitDiscrete,JGFFlight,method="lambda",test=TRUE,.progress="text")
-JAFlightLambdaphytools<-llply(JABI,fitDiscrete,JAFlight,method="lambda",test=TRUE,.progress="text")
-JAFFlightLambdaphytools<-llply(JAFBI,fitDiscrete,JAFFlight,method="lambda",test=TRUE,.progress="text")
-
-
-BurleighFlightKphytools<-llply(BurBI,phylosig,BurFlight,method="K",test=TRUE,.progress="text")
-JGFlightKphytools<-llply(JGBI,fitDiscrete,JGFlight,method="K",test=TRUE,.progress="text")
-JGFFlightKphytools<-llply(JGFBI,fitDiscrete,JGFFlight,method="K",test=TRUE,.progress="text")
-JAFlightKphytools<-llply(JABI,fitDiscrete,JAFlight,method="K",test=TRUE,.progress="text")
-JAFFlightKphytools<-llply(JAFBI,fitDiscrete,JAFFlight,method="K",test=TRUE,.progress="text")
 
 
 
