@@ -100,14 +100,13 @@ JAFlightK<-llply(JABI,fitDiscrete,JAflight,transform="K",model="ARD",.progress="
 JAFFlightK<-llply(JAFBI,fitDiscrete,JAFFlight,transform="K",model="ARD",.progress="text")
 
 
-###these files are huge - just save the Lambda, P, and AIC values as text files instead
-
-
-
 
 
 
 ###Check for and save P values
+
+##Also need to etxract AIC and P values for ARD models
+##IF ARD is better, USE THESE PARAMETERS, not ER
 
 BFLam<-matrix(nrow=length(BurleighFlightLambda),ncol=2)
 
