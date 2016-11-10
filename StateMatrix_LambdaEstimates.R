@@ -84,25 +84,30 @@ JAFlightLambda<-llply(JABI,fitDiscrete,JAFlight,transform="lambda",model="ARD",.
 JAFFlightLambda<-llply(JAFBI,fitDiscrete,JAFFlight,transform="lambda",model="ARD",.progress="text")
 
 
-
+#K - ER Models
 BurleighFlightK<-llply(BurBI,fitDiscrete,BurFlight,transform="K",test=TRUE,.progress="text")
 JGFlightK<-llply(JGBI,fitDiscrete,JGFlight,transform="K",test=TRUE,.progress="text")
 JGFFlightK<-llply(JGFBI,fitDiscrete,JGFFlight,transform="K",test=TRUE,.progress="text")
 JAFlightK<-llply(JABI,fitDiscrete,JAflight,transform="K",test=TRUE,.progress="text")
 JAFFlightK<-llply(JAFBI,fitDiscrete,JAFFlight,transform="K",test=TRUE,.progress="text")
 
+
+#K - ARD Models
+BurleighFlightK<-llply(BurBI,fitDiscrete,BurFlight,transform="K",model="ARD",.progress="text")
+JGFlightK<-llply(JGBI,fitDiscrete,JGFlight,transform="K",model="ARD",.progress="text")
+JGFFlightK<-llply(JGFBI,fitDiscrete,JGFFlight,transform="K",model="ARD",.progress="text")
+JAFlightK<-llply(JABI,fitDiscrete,JAflight,transform="K",model="ARD",.progress="text")
+JAFFlightK<-llply(JAFBI,fitDiscrete,JAFFlight,transform="K",model="ARD",.progress="text")
+
+
 ###these files are huge - just save the Lambda, P, and AIC values as text files instead
 
-save(BurleighFlightK,file="~/Dropbox/Flightless_project/Results/fitDiscrete_Results/Burleigh_K.RData")
-save(JGFlightK,file="~/Dropbox/Flightless_project/Results/fitDiscrete_Results/Jetz_Gene_K.RData")
-save(JGFFlightK,file="~/Dropbox/Flightless_project/Results/fitDiscrete_Results/Jetz_Gene_Flightless_K.RData")
-save(JAFlightK,file="~/Dropbox/Flightless_project/Results/fitDiscrete_Results/Jetz_All_K.RData")
-save(JAFFlightK,file="~/Dropbox/Flightless_project/Results/fitDiscrete_Results/Jetz_All_Flightless_K.RData")
 
 
 
 
 
+###Check for and save P values
 
 BFLam<-matrix(nrow=length(BurleighFlightLambda),ncol=2)
 
