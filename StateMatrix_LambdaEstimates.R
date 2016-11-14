@@ -70,11 +70,11 @@ JAFBI<-llply(JAF,multi2di,.progress="text")
 
 
 #Equal rates models
-BurleighFlightLambda_ER<-llply(BurBI,fitDiscrete,BurFlight,transform="lambda",.progress="text")
-JGFlightLambda_ER<-llply(JGBI,fitDiscrete,JGFlight,transform="lambda",.progress="text")
-JGFFlightLambda_ER<-llply(JGFBI,fitDiscrete,JGFFlight,transform="lambda",.progress="text")
-JAFlightLambda_ER<-llply(JABI,fitDiscrete,JAFlight,transform="lambda",.progress="text")
-JAFFlightLambda_ER<-llply(JAFBI,fitDiscrete,JAFFlight,transform="lambda",.progress="text")
+BurleighFlightLambda_ER<-llply(BurBI,fitDiscrete,BurFlight,transform="lambda",model="ER".progress="text")
+JGFlightLambda_ER<-llply(JGBI,fitDiscrete,JGFlight,transform="lambda",model="ER".progress="text")
+JGFFlightLambda_ER<-llply(JGFBI,fitDiscrete,JGFFlight,transform="lambda",model="ER".progress="text")
+JAFlightLambda_ER<-llply(JABI,fitDiscrete,JAFlight,transform="lambda",model="ER".progress="text")
+JAFFlightLambda_ER<-llply(JAFBI,fitDiscrete,JAFFlight,transform="lambda",model="ER".progress="text")
 
 #ARD Models
 BurleighFlightLambda_ARD<-llply(BurBI,fitDiscrete,BurFlight,transform="lambda",model="ARD",.progress="text")
