@@ -70,89 +70,137 @@ JAFBI<-llply(JAF,multi2di,.progress="text")
 
 
 #Equal rates models
-BurleighFlightLambda<-llply(BurBI,fitDiscrete,BurFlight,transform="lambda",.progress="text")
-JGFlightLambda<-llply(JGBI,fitDiscrete,JGFlight,transform="lambda",.progress="text")
-JGFFlightLambda<-llply(JGFBI,fitDiscrete,JGFFlight,transform="lambda",.progress="text")
-JAFlightLambda<-llply(JABI,fitDiscrete,JAFlight,transform="lambda",.progress="text")
-JAFFlightLambda<-llply(JAFBI,fitDiscrete,JAFFlight,transform="lambda",.progress="text")
+BurleighFlightLambda_ER<-llply(BurBI,fitDiscrete,BurFlight,transform="lambda",.progress="text")
+JGFlightLambda_ER<-llply(JGBI,fitDiscrete,JGFlight,transform="lambda",.progress="text")
+JGFFlightLambda_ER<-llply(JGFBI,fitDiscrete,JGFFlight,transform="lambda",.progress="text")
+JAFlightLambda_ER<-llply(JABI,fitDiscrete,JAFlight,transform="lambda",.progress="text")
+JAFFlightLambda_ER<-llply(JAFBI,fitDiscrete,JAFFlight,transform="lambda",.progress="text")
 
 #ARD Models
-BurleighFlightLambda<-llply(BurBI,fitDiscrete,BurFlight,transform="lambda",model="ARD",.progress="text")
-JGFlightLambda<-llply(JGBI,fitDiscrete,JGFlight,transform="lambda",model="ARD",.progress="text")
-JGFFlightLambda<-llply(JGFBI,fitDiscrete,JGFFlight,transform="lambda",model="ARD",.progress="text")
-JAFlightLambda<-llply(JABI,fitDiscrete,JAFlight,transform="lambda",model="ARD",.progress="text")
-JAFFlightLambda<-llply(JAFBI,fitDiscrete,JAFFlight,transform="lambda",model="ARD",.progress="text")
+BurleighFlightLambda_ARD<-llply(BurBI,fitDiscrete,BurFlight,transform="lambda",model="ARD",.progress="text")
+JGFlightLambda_ARD<-llply(JGBI,fitDiscrete,JGFlight,transform="lambda",model="ARD",.progress="text")
+JGFFlightLambda_ARD<-llply(JGFBI,fitDiscrete,JGFFlight,transform="lambda",model="ARD",.progress="text")
+JAFlightLambda_ARD<-llply(JABI,fitDiscrete,JAFlight,transform="lambda",model="ARD",.progress="text")
+JAFFlightLambda_ARD<-llply(JAFBI,fitDiscrete,JAFFlight,transform="lambda",model="ARD",.progress="text")
 
 
-#K - ER Models
-BurleighFlightK<-llply(BurBI,fitDiscrete,BurFlight,transform="K",test=TRUE,.progress="text")
-JGFlightK<-llply(JGBI,fitDiscrete,JGFlight,transform="K",test=TRUE,.progress="text")
-JGFFlightK<-llply(JGFBI,fitDiscrete,JGFFlight,transform="K",test=TRUE,.progress="text")
-JAFlightK<-llply(JABI,fitDiscrete,JAflight,transform="K",test=TRUE,.progress="text")
-JAFFlightK<-llply(JAFBI,fitDiscrete,JAFFlight,transform="K",test=TRUE,.progress="text")
+#phytools#
+BurleighFlightLambda_ER<-llply(BurBI,phylosig,BurFlight,method="lambda",test=TRUE,.progress="text")
+JGFlightLambda_ER<-llply(JGBI,phylosig,JGFlight,method="lambda",test=TRUE,.progress="text")
+JGFFlightLambda_ER<-llply(JGFBI,phylosig,JGFFlight,method="lambda",test=TRUE,.progress="text")
+JAFlightLambda_ER<-llply(JABI,phylosig,JAFlight,method="lambda",test=TRUE,.progress="text")
+JAFFlightLambda_ER<-llply(JAFBI,phylosig,JAFFlight,method="lambda",test=TRUE,.progress="text")
 
 
-#K - ARD Models
-BurleighFlightK<-llply(BurBI,fitDiscrete,BurFlight,transform="K",model="ARD",.progress="text")
-JGFlightK<-llply(JGBI,fitDiscrete,JGFlight,transform="K",model="ARD",.progress="text")
-JGFFlightK<-llply(JGFBI,fitDiscrete,JGFFlight,transform="K",model="ARD",.progress="text")
-JAFlightK<-llply(JABI,fitDiscrete,JAflight,transform="K",model="ARD",.progress="text")
-JAFFlightK<-llply(JAFBI,fitDiscrete,JAFFlight,transform="K",model="ARD",.progress="text")
-
-
-
-
-
-###Check for and save P values
+#Check for and save P values
 
 ##Also need to etxract AIC and P values for ARD models
 ##IF ARD is better, USE THESE PARAMETERS, not ER
 
-BFLam<-matrix(nrow=length(BurleighFlightLambda),ncol=2)
+#Burleigh - lambda for flightlessness, All Rates Different model
 
-for(i in 1:length(BurleighFlightLambda)){
-	BFLam[i,1]<-BurleighFlightLambda[[i]]$opt$lam
-	BFLam[i,2]<-BurleighFlightLambda[[i]]$opt$aic
+BFLam_ER<-matrix(nrow=length(BurleighFlightLambda_ER),ncol=2)
+
+for(i in 1:length(BurleighFlightLambda_ER)){
+	BFLam_ER[i,1]<-BurleighFlightLambda_ER[[i]]$opt$lam
+	BFLam_ER[i,2]<-BurleighFlightLambda_ER[[i]]$opt$aic
 	}
-colnames(BFLam)<-c("Lambda","AIC")
+colnames(BFLam_ER)<-c("Lambda","AIC")
 
-write.csv(BFLam,"~/Dropbox/Flightless_project/Results/BurleighLambda.csv")
+write.csv(BFLam_ER,"~/Dropbox/Flightless_project/Results/BurleighLambda_ER.csv")
 
+#Burleigh - lambda for flightlessness, All Rates Different model
 
-JGFLam<-matrix(nrow=length(JGFlightLambda),ncol=2)
+BFLam_ARD<-matrix(nrow=length(BurleighFlightLambda_ARD),ncol=2)
 
-for(i in 1:length(JGFlightLambda)){
-	JGFLam[i,1]<-JGFlightLambda[[i]]$opt$lam
-	JGFLam[i,2]<-JGFlightLambda[[i]]$opt$aic
+for(i in 1:length(BurleighFlightLambda_ARD)){
+	BFLam_ARD[i,1]<-BurleighFlightLambda_ARD[[i]]$opt$lam
+	BFLam_ARD[i,2]<-BurleighFlightLambda_ARD[[i]]$opt$aic
 	}
-colnames(JGFLam)<-c("Lambda","AIC")
+colnames(BFLam_ARD)<-c("Lambda","AIC")
 
-write.csv(JGFLam,"~/Dropbox/Flightless_project/Results/JGLambda.csv")
+write.csv(BFLam_ARD,"~/Dropbox/Flightless_project/Results/BurleighLambda_ARD.csv")
 
 
-JGFFLam<-matrix(nrow=length(JGFFlightLambda),ncol=2)
+#Jetz Gene-only - lambda for flightlessness,Equal Rates model
 
-for(i in 1:length(JGFFlightLambda)){
-	JGFFLam[i,1]<-JGFFlightLambda[[i]]$opt$lam
-	JGFFLam[i,2]<-JGFFlightLambda[[i]]$opt$aic
+JGFLam_ER<-matrix(nrow=length(JGFlightLambda_ER),ncol=2)
+
+for(i in 1:length(JGFlightLambda_ER)){
+	JGFLam_ER[i,1]<-JGFlightLambda_ER[[i]]$opt$lam
+	JGFLam_ER[i,2]<-JGFlightLambda_ER[[i]]$opt$aic
 	}
-colnames(JGFFLam)<-c("Lambda","AIC")
+colnames(JGFLam_ER)<-c("Lambda","AIC")
 
-write.csv(JGFFLam,"~/Dropbox/Flightless_project/Results/JGFLambda.csv")
+write.csv(JGFLam_ER,"~/Dropbox/Flightless_project/Results/JGLambda_ER.csv")
+
+
+#Jetz Gene-only - lambda for flightlessness, All Rates Different model
+JGFLam_ARD<-matrix(nrow=length(JGFlightLambda_ARD),ncol=2)
+
+for(i in 1:length(JGFlightLambda_ARD)){
+	JGFLam_ARD[i,1]<-JGFlightLambda_ARD[[i]]$opt$lam
+	JGFLam_ARD[i,2]<-JGFlightLambda_ARD[[i]]$opt$aic
+	}
+colnames(JGFLam_ARD)<-c("Lambda","AIC")
+
+write.csv(JGFLam_ARD,"~/Dropbox/Flightless_project/Results/JGLambda_ARD.csv")
+
+
+
+
+#Jetz Gene-only + flightless - lambda for flightlessness, Equal Rates model
+
+JGFFLam_ER<-matrix(nrow=length(JGFFlightLambda_ER),ncol=2)
+
+for(i in 1:length(JGFFlightLambda_ER)){
+	JGFFLam_ER[i,1]<-JGFFlightLambda_ER[[i]]$opt$lam
+	JGFFLam_ER[i,2]<-JGFFlightLambda_ER[[i]]$opt$aic
+	}
+colnames(JGFFLam_ER)<-c("Lambda","AIC")
+
+write.csv(JGFFLam_ER,"~/Dropbox/Flightless_project/Results/JGFLambda_ER.csv")
+
+
+#Jetz Gene-only + flightless - lambda for flightlessness, All Rates Different model
+
+JGFFLam_ARD<-matrix(nrow=length(JGFFlightLambda_ARD),ncol=2)
+
+for(i in 1:length(JGFFlightLambda_ARD)){
+	JGFFLam_ARD[i,1]<-JGFFlightLambda_ARD[[i]]$opt$lam
+	JGFFLam_ARD[i,2]<-JGFFlightLambda_ARD[[i]]$opt$aic
+	}
+colnames(JGFFLam_ARD)<-c("Lambda","AIC")
+
+write.csv(JGFFLam_ARD,"~/Dropbox/Flightless_project/Results/JGFLambda_ARD.csv")
  
 
+#Jetz all - lambda for flightlessness, Equal rates model
 
-JAFLam<-matrix(nrow=length(JAFlightLambda),ncol=2)
+JAFLam_ER<-matrix(nrow=length(JAFlightLambda_ER),ncol=2)
 
-for(i in 1:length(JAFlightLambda)){
-	JAFLam[i,1]<-JAFlightLambda[[i]]$opt$lam
-	JAFLam[i,2]<-JAFlightLambda[[i]]$opt$aic
+for(i in 1:length(JAFlightLambda_ER)){
+	JAFLam_ER[i,1]<-JAFlightLambda_ER[[i]]$opt$lam
+	JAFLam_ER[i,2]<-JAFlightLambda_ER[[i]]$opt$aic
 	}
-colnames(JAFLam)<-c("Lambda","AIC")
+colnames(JAFLam_ER)<-c("Lambda","AIC")
 
-write.csv(JAFLam,"~/Dropbox/Flightless_project/Results/JALambda.csv")
+write.csv(JAFLam_ER,"~/Dropbox/Flightless_project/Results/JALambda_ER.csv")
+
+#Jetz all - lambda for flightlessness, All Rates Different model
+
+JAFLam_ER<-matrix(nrow=length(JAFlightLambda_ER),ncol=2)
+
+for(i in 1:length(JAFlightLambda_ER)){
+	JAFLam_ER[i,1]<-JAFlightLambda_ER[[i]]$opt$lam
+	JAFLam_ER[i,2]<-JAFlightLambda_ER[[i]]$opt$aic
+	}
+colnames(JAFLam_ER)<-c("Lambda","AIC")
+
+write.csv(JAFLam_ER,"~/Dropbox/Flightless_project/Results/JALambda_ER.csv")
 
 
+#Jetz all + flightless- lambda for flightlessness, Equal Rates model
 
 JAFFLam<-matrix(nrow=length(JAFFlightLambda),ncol=2)
 
@@ -162,8 +210,21 @@ for(i in 1:length(JAFFlightLambda)){
 	}
 colnames(JAFFLam)<-c("Lambda","AIC")
 
-write.csv(JAFFLam,"~/Dropbox/Flightless_project/Results/JAFLambda.csv")
+write.csv(JAFFLam,"~/Dropbox/Flightless_project/Results/JAFLambda_ER.csv")
 
+#Jetz all + flightless - lambda for flightlessness, All Rates Different model
+
+JAFFLam_ARD<-matrix(nrow=length(JAFFlightLambda_ARD),ncol=2)
+
+for(i in 1:length(JAFFlightLambda_ARD)){
+	JAFFLam[i,1]<-JAFFlightLambda_ARD[[i]]$opt$lam
+	JAFFLam[i,2]<-JAFFlightLambda_ARD[[i]]$opt$aic
+	}
+colnames(JAFFLam_ARD)<-c("Lambda","AIC")
+
+write.csv(JAFFLam_ARD,"~/Dropbox/Flightless_project/Results/JAFLambda_ARD.csv")
+
+# Save these on an external hard drive
 
 save(BurleighFlightLambda,file="~/Dropbox/Flightless_project/Results/fitDiscrete_Results/Burleigh_lambda.RData")
 save(JGFlightLambda,file="~/Dropbox/Flightless_project/Results/fitDiscrete_Results/Jetz_Gene_lambda.RData")
