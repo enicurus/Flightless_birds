@@ -84,12 +84,7 @@ JAFlightLambda_ARD<-llply(JABI,fitDiscrete,JAFlight,transform="lambda",model="AR
 JAFFlightLambda_ARD<-llply(JAFBI,fitDiscrete,JAFFlight,transform="lambda",model="ARD",.progress="text")
 
 
-#Check for and save P values
-
-##Also need to etxract AIC and P values for ARD models
-##IF ARD is better, USE THESE PARAMETERS, not ER
-
-#Burleigh - lambda for flightlessness, All Rates Different model
+#Save lambda and AIC values for each model for each tree 
 
 BFLam_ER<-matrix(nrow=length(BurleighFlightLambda_ER),ncol=2)
 
