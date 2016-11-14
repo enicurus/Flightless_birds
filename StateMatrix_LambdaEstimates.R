@@ -84,14 +84,6 @@ JAFlightLambda_ARD<-llply(JABI,fitDiscrete,JAFlight,transform="lambda",model="AR
 JAFFlightLambda_ARD<-llply(JAFBI,fitDiscrete,JAFFlight,transform="lambda",model="ARD",.progress="text")
 
 
-#phytools
-BurleighFlightLambda_pt<-llply(BurBI,phylosig,BurFlight,method="lambda",test=TRUE,.progress="text")
-JGFlightLambda_pt<-llply(JGBI,phylosig,JGFlight,method="lambda",test=TRUE,.progress="text")
-JGFFlightLambda_pt<-llply(JGFBI,phylosig,JGFFlight,method="lambda",test=TRUE,.progress="text")
-JAFlightLambda_pt<-llply(JABI,phylosig,JAFlight,method="lambda",test=TRUE,.progress="text")
-JAFFlightLambda_pt<-llply(JAFBI,phylosig,JAFFlight,method="lambda",test=TRUE,.progress="text")
-
-
 #Check for and save P values
 
 ##Also need to etxract AIC and P values for ARD models
