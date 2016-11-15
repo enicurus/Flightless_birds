@@ -176,15 +176,15 @@ write.csv(JAFLam_ER,"~/Dropbox/Flightless_project/Results/JALambda_ER.csv")
 
 #Jetz all - lambda for flightlessness, All Rates Different model
 
-JAFLam_ER<-matrix(nrow=length(JAFlightLambda_ER),ncol=2)
+JAFLam_ARD<-matrix(nrow=length(JAFlightLambda_ARD),ncol=2)
 
-for(i in 1:length(JAFlightLambda_ER)){
-	JAFLam_ER[i,1]<-JAFlightLambda_ER[[i]]$opt$lam
-	JAFLam_ER[i,2]<-JAFlightLambda_ER[[i]]$opt$aic
+for(i in 1:length(JAFlightLambda_ARD)){
+	JAFLam_ARD[i,1]<-JAFlightLambda_ARD[[i]]$opt$lam
+	JAFLam_ARD[i,2]<-JAFlightLambda_ARD[[i]]$opt$aic
 	}
-colnames(JAFLam_ER)<-c("Lambda","AIC")
+colnames(JAFLam_ARD)<-c("Lambda","AIC")
 
-write.csv(JAFLam_ER,"~/Dropbox/Flightless_project/Results/JALambda_ER.csv")
+write.csv(JAFLam_ARD,"~/Dropbox/Flightless_project/Results/JALambda_ARD.csv")
 
 
 #Jetz all + flightless- lambda for flightlessness, Equal Rates model
