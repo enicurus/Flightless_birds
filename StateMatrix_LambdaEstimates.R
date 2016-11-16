@@ -219,7 +219,67 @@ save(JGFFlightLambda,file="~/Dropbox/Flightless_project/Results/fitDiscrete_Resu
 save(JAFlightLambda,file="~/Dropbox/Flightless_project/Results/fitDiscrete_Results/Jetz_All_lambda.RData")
 save(JAFFlightLambda,file="~/Dropbox/Flightless_project/Results/fitDiscrete_Results/Jetz_All_Flightless_lambda.RData")
 
+
+### Load transition parameters from files
+
+B_ER<-read.csv("/Users/ryanterrill/Dropbox/Flightless_project/Results/BurleighLambda_ER.csv")
+B_ARD<-read.csv("/Users/ryanterrill/Dropbox/Flightless_project/Results/BurleighLambda_ARD.csv")
+JG_ER<-read.csv("/Users/ryanterrill/Dropbox/Flightless_project/Results/JGLambda_ER.csv")
+JG_ARD<-read.csv("/Users/ryanterrill/Dropbox/Flightless_project/Results/JGLambda_ARD.csv")
+JGF_ER<-read.csv("/Users/ryanterrill/Dropbox/Flightless_project/Results/JGFLambda_ER.csv")
+JGF_ARD<-read.csv("/Users/ryanterrill/Dropbox/Flightless_project/Results/JGFLambda_ARD.csv")
+JA_ER<-read.csv("/Users/ryanterrill/Dropbox/Flightless_project/Results/JALambda_ER.csv")
+JA_ARD<-read.csv("/Users/ryanterrill/Dropbox/Flightless_project/Results/JALambda_ARD.csv")
+JAF_ER<-read.csv("/Users/ryanterrill/Dropbox/Flightless_project/Results/JAFLambda_ER.csv")
+JAF_ARD<-read.csv("/Users/ryanterrill/Dropbox/Flightless_project/Results/JAFLambda_ARD.csv")
+
+### Compare ER to ARD models from AIC - present lambda from best (ARD) model in paper - but give lambda for ER and ARD, as well as AIC for each in supplemental
+
 n<-rep(NA,(1000-101))
+B_ER<-B_ER[,-1]
+B_ARD<-B_ARD[,-1]
+berlam<-B_ER$Lambda;berlam<-c(berlam,n)
+beraic<-B_ER$AIC;beraic<-c(beraic,n)
+B_ER<-data.frame(berlam,beraic)
+colnames(B_ER)<-c("Lambda","AIC")
+
+n<-rep(NA,(1000-101))
+
+bardlam<-B_ARD$Lambda;bardlam<-c(bardlam,n)
+bardaic<-B_ARD$AIC;bardaic<-c(bardaic,n)
+B_ARD<-data.frame(bardlam,bardaic)
+colnames(B_ARD)<-c("Lambda","AIC")
+
+##USE AIC values to calculate likelihood ratio for ARD vs ER models
+
+Burleigh_model_likelihood<-exp((B_ARD$AIC-B_ER$AIC)/2)
+pdf("/Users/ryanterrill/Dropbox/Flightless_project/Results/Burleigh_Model_Likelihood")
+hist(B_ER_likelihood,breaks=50)
+dev.off()
+
+
+JG_ER_likelihood<-exp((JG_ARD$AIC-JG_ER$AIC)/2)
+#remove one outlier at 2x10^64
+JG_ER_likelihood[JG_ER_likelihood>1000]<-NA
+pdf("/Users/ryanterrill/Dropbox/Flightless_project/Results/JG_Model_Likelihood")
+hist(JG_ER_likelihood,breaks=100)
+dev.off()
+
+JGF_ER_likelihood<-exp((JGF_ARD$AIC-JGF_ER$AIC)/2)
+pdf("/Users/ryanterrill/Dropbox/Flightless_project/Results/JGF_Model_Likelihood")
+hist(JGF_ER_likelihood,breaks=100)
+dev.off()
+
+JA_model_likelihood
+
+JAF_model_likelihood
+
+
+##Make two boxplots - one with all Lambdas - both models for each tree - one with all AIC values
+
+
+
+
 burLambda<-c(BFLam[,2],n)
 treeLambdas<-data.frame(burLambda,JGFLam[,2],JGFFLam[,1],JAFLam[,2],JAFFLam[,2])
 colnames(treeLambdas)<-c("Burleigh","Jetz Gene","Jetz Gene +\n Flightless","Jetz All","Jetz All +\n Flightless")
@@ -254,9 +314,6 @@ colnames(BrownPar)<-c("Burleigh","Jetz Gene","Jetz Gene +\n Flightless","Jetz Al
 bp.melt<-melt(BrownPar)
 ggplot(data=bp.melt,aes(x=X2,y=log(value)))+geom_boxplot()+theme_bw()+theme(axis.title.x=element_blank())+ylab("Brownian Rate Parameter - Loss of FLight")
 ggsave("/Users/ryanterrill/Dropbox/Flightless_project/Manuscript/Brownian_rate_parameter_trees.pdf")
-
-
-###Also do this in phylosig to see if results are the same
 
 
 
