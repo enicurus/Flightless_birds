@@ -24,7 +24,6 @@ stateMatrix<-function(tree,flightless,simultaneous){
 	}
 	
 	
-##Fossil node01 0 Struthioniformes_Struthionidae_Struthio_camelus Passeriformes-oscines_Passeridae_Passer_domesticus
 
 F<-read.csv("~/Dropbox/Flightless_project/Trees/All_Birds/Flightless_taxa.csv")
 flightless<-F$Flightless_taxa
