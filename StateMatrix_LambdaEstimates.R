@@ -234,26 +234,27 @@ JAF_ARD<-read.csv("/Users/ryanterrill/Dropbox/Flightless_project/Results/JAFLamb
 
 ### Compare ER to ARD models from AIC - present lambda from best (ARD) model in paper - but give lambda for ER and ARD, as well as AIC for each in supplemental
 
-n<-rep(NA,(1000-101))
-B_ER<-B_ER[,-1]
-B_ARD<-B_ARD[,-1]
-berlam<-B_ER$Lambda;berlam<-c(berlam,n)
-beraic<-B_ER$AIC;beraic<-c(beraic,n)
-B_ER<-data.frame(berlam,beraic)
-colnames(B_ER)<-c("Lambda","AIC")
 
-n<-rep(NA,(1000-101))
+Burleigh_ER<-data.frame(B_ER$Lambda,B_ER$AIC,"Burleigh","ER");names(Burleigh_ER)<-c("Lambda","AIC","Tree","Model")
+Burleigh_ARD<-data.frame(B_ARD$Lambda,B_ARD$AIC,"Burleigh","ARD");names(Burleigh_ARD)<-c("Lambda","AIC","Tree","Model")
+JetzGene_ER<-data.frame(JG_ER$Lambda,JG_ER$AIC,"Jetz_gene","ER");names(JetzGene_ER)<-c("Lambda","AIC","Tree","Model")
+JetzGene_ARD<-data.frame(JG_ARD$Lambda,JG_ARD$AIC,"Jetz_gene","ARD");names(JetzGene_ARD)<-c("Lambda","AIC","Tree","Model")
+JetzGeneFlightless_ER<-data.frame(JGF_ER$Lambda,JGF_ER$AIC,"Jetz_gene_flightless","ER");names(JetzGeneFlightless_ER)<-c("Lambda","AIC","Tree","Model")
+JetzGeneFlightless_ARD<-data.frame(JGF_ARD$Lambda,JGF_ARD$AIC,"Jetz_gene_flightless","ARD");names(JetzGeneFlightless_ARD)<-c("Lambda","AIC","Tree","Model")
+JetzAll_ER<-data.frame(JA_ER$Lambda,JA_ER$AIC,"Jetz_All","ER");names(JetzAll_ER)<-c("Lambda","AIC","Tree","Model")
+JetzAll_ARD<-data.frame(JA_ARD$Lambda,JA_ARD$AIC,"Jetz_All","ARD");names(JetzAll_ARD)<-c("Lambda","AIC","Tree","Model")
+JetzAllFlightless_ER<-data.frame(JAF_ER$Lambda,JAF_ER$AIC,"Jetz_All_flightless","ER");names(JetzAllFlightless_ER)<-c("Lambda","AIC","Tree","Model")
+JetzAllFlightless_ARD<-data.frame(JAF_ARD$Lambda,JAF_ARD$AIC,"Jetz_All_flightless","ARD");names(JetzAllFlightless_ARD)<-c("Lambda","AIC","Tree","Model")
 
-bardlam<-B_ARD$Lambda;bardlam<-c(bardlam,n)
-bardaic<-B_ARD$AIC;bardaic<-c(bardaic,n)
-B_ARD<-data.frame(bardlam,bardaic)
-colnames(B_ARD)<-c("Lambda","AIC")
+Lambdas<-rbind(Burleigh_ER,Burleigh_ARD,JetzGene_ER,JetzGene_ARD,JetzGeneFlightless_ER,JetzGeneFlightless_ARD,JetzAll_ER,JetzAll_ARD,JetzAllFlightless_ER,JetzAllFlightless_ARD)
+
+ggplot(data=Lambdas,aes(x=Lambda))+geom_bar()
 
 ##USE AIC values to calculate likelihood ratio for ARD vs ER models
 
 Burleigh_model_likelihood<-exp((B_ARD$AIC-B_ER$AIC)/2)
 pdf("/Users/ryanterrill/Dropbox/Flightless_project/Results/Burleigh_Model_Likelihood")
-hist(B_ER_likelihood,breaks=50)
+hist(Burleigh_model_likelihood,breaks=50)
 dev.off()
 
 
