@@ -85,6 +85,8 @@ JAFFlightLambda_ARD<-llply(JAFBI,fitDiscrete,JAFFlight,transform="lambda",model=
 
 #Save lambda and AIC values for each model for each tree 
 
+##Save rate parameters too? If so - rerun this all over thanksgiving and save rate parameters
+
 BFLam_ER<-matrix(nrow=length(BurleighFlightLambda_ER),ncol=2)
 
 for(i in 1:length(BurleighFlightLambda_ER)){
@@ -209,14 +211,6 @@ for(i in 1:length(JAFFlightLambda_ARD)){
 colnames(JAFFLam_ARD)<-c("Lambda","AIC")
 
 write.csv(JAFFLam_ARD,"~/Dropbox/Flightless_project/Results/JAFLambda_ARD.csv")
-
-# Save these on an external hard drive
-
-save(BurleighFlightLambda,file="~/Dropbox/Flightless_project/Results/fitDiscrete_Results/Burleigh_lambda.RData")
-save(JGFlightLambda,file="~/Dropbox/Flightless_project/Results/fitDiscrete_Results/Jetz_Gene_lambda.RData")
-save(JGFFlightLambda,file="~/Dropbox/Flightless_project/Results/fitDiscrete_Results/Jetz_Gene_Flightless_lambda.RData")
-save(JAFlightLambda,file="~/Dropbox/Flightless_project/Results/fitDiscrete_Results/Jetz_All_lambda.RData")
-save(JAFFlightLambda,file="~/Dropbox/Flightless_project/Results/fitDiscrete_Results/Jetz_All_Flightless_lambda.RData")
 
 
 ### Load transition parameters from files
