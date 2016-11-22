@@ -205,8 +205,8 @@ write.csv(JAFFLam,"~/Dropbox/Flightless_project/Results/JAFLambda_ER.csv")
 JAFFLam_ARD<-matrix(nrow=length(JAFFlightLambda_ARD),ncol=2)
 
 for(i in 1:length(JAFFlightLambda_ARD)){
-	JAFFLam[i,1]<-JAFFlightLambda_ARD[[i]]$opt$lam
-	JAFFLam[i,2]<-JAFFlightLambda_ARD[[i]]$opt$aic
+	JAFFLam_ARD[i,1]<-JAFFlightLambda_ARD[[i]]$opt$lam
+	JAFFLam_ARD[i,2]<-JAFFlightLambda_ARD[[i]]$opt$aic
 	}
 colnames(JAFFLam_ARD)<-c("Lambda","AIC")
 
