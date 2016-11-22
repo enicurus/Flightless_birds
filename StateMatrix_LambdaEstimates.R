@@ -246,7 +246,8 @@ JetzAllFlightless_ARD<-data.frame(JAF_ARD$Lambda,JAF_ARD$AIC,"Jetz_All_flightles
 
 Lambdas<-rbind(Burleigh_ER,Burleigh_ARD,JetzGene_ER,JetzGene_ARD,JetzGeneFlightless_ER,JetzGeneFlightless_ARD,JetzAll_ER,JetzAll_ARD,JetzAllFlightless_ER,JetzAllFlightless_ARD)
 
-ggplot(data=Lambdas,aes(x=Lambda))+geom_bar()
+ggplot(data=Lambdas,aes(y=Lambda,x=Tree,fill=Model))+geom_boxplot()+theme_bw()+scale_fill_grey()
+ggplot(data=Lambdas,aes(y=AIC,x=Tree,fill=Model))+geom_boxplot()+theme_bw()+scale_fill_grey()
 
 ##USE AIC values to calculate likelihood ratio for ARD vs ER models
 
