@@ -87,11 +87,14 @@ JAFFlightLambda_ARD<-llply(JAFBI,fitDiscrete,JAFFlight,transform="lambda",model=
 
 ##Save rate parameters too? If so - rerun this all over thanksgiving and save rate parameters
 
-BFLam_ER<-matrix(nrow=length(BurleighFlightLambda_ER),ncol=2)
+BFLam_ER<-matrix(nrow=length(BurleighFlightLambda_ER),ncol=5)
 
 for(i in 1:length(BurleighFlightLambda_ER)){
 	BFLam_ER[i,1]<-BurleighFlightLambda_ER[[i]]$opt$lam
 	BFLam_ER[i,2]<-BurleighFlightLambda_ER[[i]]$opt$aic
+	BFLam_ER[i,3]<-BurleighFlightLambda_ER[[i]]$opt$q12
+	BFLam_ER[i,4]<-BurleighFlightLambda_ER[[i]]$opt$q21
+	BFLam_ER[i,5]<-BurleighFlightLambda_ER[[i]]$opt$lnL
 	}
 colnames(BFLam_ER)<-c("Lambda","AIC")
 
@@ -99,11 +102,14 @@ write.csv(BFLam_ER,"~/Dropbox/Flightless_project/Results/BurleighLambda_ER.csv")
 
 #Burleigh - lambda for flightlessness, All Rates Different model
 
-BFLam_ARD<-matrix(nrow=length(BurleighFlightLambda_ARD),ncol=2)
+BFLam_ARD<-matrix(nrow=length(BurleighFlightLambda_ARD),ncol=5)
 
 for(i in 1:length(BurleighFlightLambda_ARD)){
 	BFLam_ARD[i,1]<-BurleighFlightLambda_ARD[[i]]$opt$lam
 	BFLam_ARD[i,2]<-BurleighFlightLambda_ARD[[i]]$opt$aic
+	BFLam_ARD[i,3]<-BurleighFlightLambda_ARD[[i]]$opt$q12
+	BFLam_ARD[i,4]<-BurleighFlightLambda_ARD[[i]]$opt$q21
+	BFLam_ARD[i,5]<-BurleighFlightLambda_ARD[[i]]$opt$lnL
 	}
 colnames(BFLam_ARD)<-c("Lambda","AIC")
 
@@ -112,11 +118,14 @@ write.csv(BFLam_ARD,"~/Dropbox/Flightless_project/Results/BurleighLambda_ARD.csv
 
 #Jetz Gene-only - lambda for flightlessness,Equal Rates model
 
-JGFLam_ER<-matrix(nrow=length(JGFlightLambda_ER),ncol=2)
+JGFLam_ER<-matrix(nrow=length(JGFlightLambda_ER),ncol=5)
 
 for(i in 1:length(JGFlightLambda_ER)){
 	JGFLam_ER[i,1]<-JGFlightLambda_ER[[i]]$opt$lam
 	JGFLam_ER[i,2]<-JGFlightLambda_ER[[i]]$opt$aic
+	JGFLam_ER[i,3]<-JGFlightLambda_ER[[i]]$opt$q12
+	JGFLam_ER[i,4]<-JGFlightLambda_ER[[i]]$opt$q21
+	JGFLam_ER[i,5]<-JGFlightLambda_ER[[i]]$opt$lnL
 	}
 colnames(JGFLam_ER)<-c("Lambda","AIC")
 
@@ -124,11 +133,14 @@ write.csv(JGFLam_ER,"~/Dropbox/Flightless_project/Results/JGLambda_ER.csv")
 
 
 #Jetz Gene-only - lambda for flightlessness, All Rates Different model
-JGFLam_ARD<-matrix(nrow=length(JGFlightLambda_ARD),ncol=2)
+JGFLam_ARD<-matrix(nrow=length(JGFlightLambda_ARD),ncol=5)
 
 for(i in 1:length(JGFlightLambda_ARD)){
 	JGFLam_ARD[i,1]<-JGFlightLambda_ARD[[i]]$opt$lam
 	JGFLam_ARD[i,2]<-JGFlightLambda_ARD[[i]]$opt$aic
+	JGFLam_ARD[i,3]<-JGFlightLambda_ARD[[i]]$opt$q12
+	JGFLam_ARD[i,4]<-JGFlightLambda_ARD[[i]]$opt$q21
+	JGFLam_ARD[i,5]<-JGFlightLambda_ARD[[i]]$opt$lnL
 	}
 colnames(JGFLam_ARD)<-c("Lambda","AIC")
 
@@ -139,11 +151,14 @@ write.csv(JGFLam_ARD,"~/Dropbox/Flightless_project/Results/JGLambda_ARD.csv")
 
 #Jetz Gene-only + flightless - lambda for flightlessness, Equal Rates model
 
-JGFFLam_ER<-matrix(nrow=length(JGFFlightLambda_ER),ncol=2)
+JGFFLam_ER<-matrix(nrow=length(JGFFlightLambda_ER),ncol=5)
 
 for(i in 1:length(JGFFlightLambda_ER)){
 	JGFFLam_ER[i,1]<-JGFFlightLambda_ER[[i]]$opt$lam
 	JGFFLam_ER[i,2]<-JGFFlightLambda_ER[[i]]$opt$aic
+	JGFFLam_ER[i,3]<-JGFFlightLambda_ER[[i]]$opt$q12
+	JGFFLam_ER[i,4]<-JGFFlightLambda_ER[[i]]$opt$q21
+	JGFFLam_ER[i,5]<-JGFFlightLambda_ER[[i]]$opt$lnL
 	}
 colnames(JGFFLam_ER)<-c("Lambda","AIC")
 
@@ -152,11 +167,14 @@ write.csv(JGFFLam_ER,"~/Dropbox/Flightless_project/Results/JGFLambda_ER.csv")
 
 #Jetz Gene-only + flightless - lambda for flightlessness, All Rates Different model
 
-JGFFLam_ARD<-matrix(nrow=length(JGFFlightLambda_ARD),ncol=2)
+JGFFLam_ARD<-matrix(nrow=length(JGFFlightLambda_ARD),ncol=5)
 
 for(i in 1:length(JGFFlightLambda_ARD)){
 	JGFFLam_ARD[i,1]<-JGFFlightLambda_ARD[[i]]$opt$lam
 	JGFFLam_ARD[i,2]<-JGFFlightLambda_ARD[[i]]$opt$aic
+	JGFFLam_ARD[i,3]<-JGFFlightLambda_ARD[[i]]$opt$q12
+	JGFFLam_ARD[i,4]<-JGFFlightLambda_ARD[[i]]$opt$q21
+	JGFFLam_ARD[i,5]<-JGFFlightLambda_ARD[[i]]$opt$lnL
 	}
 colnames(JGFFLam_ARD)<-c("Lambda","AIC")
 
@@ -165,11 +183,14 @@ write.csv(JGFFLam_ARD,"~/Dropbox/Flightless_project/Results/JGFLambda_ARD.csv")
 
 #Jetz all - lambda for flightlessness, Equal rates model
 
-JAFLam_ER<-matrix(nrow=length(JAFlightLambda_ER),ncol=2)
+JAFLam_ER<-matrix(nrow=length(JAFlightLambda_ER),ncol=5)
 
 for(i in 1:length(JAFlightLambda_ER)){
 	JAFLam_ER[i,1]<-JAFlightLambda_ER[[i]]$opt$lam
 	JAFLam_ER[i,2]<-JAFlightLambda_ER[[i]]$opt$aic
+	JAFLam_ER[i,3]<-JAFlightLambda_ER[[i]]$opt$q12
+	JAFLam_ER[i,4]<-JAFlightLambda_ER[[i]]$opt$q21
+	JAFLam_ER[i,5]<-JAFlightLambda_ER[[i]]$opt$lnL
 	}
 colnames(JAFLam_ER)<-c("Lambda","AIC")
 
@@ -177,11 +198,15 @@ write.csv(JAFLam_ER,"~/Dropbox/Flightless_project/Results/JALambda_ER.csv")
 
 #Jetz all - lambda for flightlessness, All Rates Different model
 
-JAFLam_ARD<-matrix(nrow=length(JAFlightLambda_ARD),ncol=2)
+JAFLam_ARD<-matrix(nrow=length(JAFlightLambda_ARD),ncol=5)
 
 for(i in 1:length(JAFlightLambda_ARD)){
 	JAFLam_ARD[i,1]<-JAFlightLambda_ARD[[i]]$opt$lam
 	JAFLam_ARD[i,2]<-JAFlightLambda_ARD[[i]]$opt$aic
+	JAFLam_ARD[i,3]<-JAFlightLambda_ARD[[i]]$opt$q12
+	JAFLam_ARD[i,4]<-JAFlightLambda_ARD[[i]]$opt$q21
+	JAFLam_ARD[i,5]<-JAFlightLambda_ARD[[i]]$opt$lnL
+	
 	}
 colnames(JAFLam_ARD)<-c("Lambda","AIC")
 
@@ -190,15 +215,18 @@ write.csv(JAFLam_ARD,"~/Dropbox/Flightless_project/Results/JALambda_ARD.csv")
 
 #Jetz all + flightless- lambda for flightlessness, Equal Rates model
 
-JAFFLam<-matrix(nrow=length(JAFFlightLambda),ncol=2)
+JAFFLam_ER<-matrix(nrow=length(JAFFlightLambda_ER),ncol=5)
 
-for(i in 1:length(JAFFlightLambda)){
-	JAFFLam[i,1]<-JAFFlightLambda[[i]]$opt$lam
-	JAFFLam[i,2]<-JAFFlightLambda[[i]]$opt$aic
+for(i in 1:length(JAFFlightLambda_ER)){
+	JAFFLam_ER[i,1]<-JAFFlightLambda_ER[[i]]$opt$lam
+	JAFFLam_ER[i,2]<-JAFFlightLambda_ER[[i]]$opt$aic
+	JAFFLam_ER[i,3]<-JAFFlightLambda_ER[[i]]$opt$q12
+	JAFFLam_ER[i,4]<-JAFFlightLambda_ER[[i]]$opt$q21
+	JAFFLam_ER[i,5]<-JAFFlightLambda_ER[[i]]$opt$lnL
 	}
-colnames(JAFFLam)<-c("Lambda","AIC")
+colnames(JAFFLam_ER)<-c("Lambda","AIC")
 
-write.csv(JAFFLam,"~/Dropbox/Flightless_project/Results/JAFLambda_ER.csv")
+write.csv(JAFFLam_ER,"~/Dropbox/Flightless_project/Results/JAFLambda_ER.csv")
 
 #Jetz all + flightless - lambda for flightlessness, All Rates Different model
 #Add all these parameters to the others
@@ -246,8 +274,21 @@ JetzAllFlightless_ARD<-data.frame(JAF_ARD$Lambda,JAF_ARD$AIC,"Jetz_All_flightles
 
 Lambdas<-rbind(Burleigh_ER,Burleigh_ARD,JetzGene_ER,JetzGene_ARD,JetzGeneFlightless_ER,JetzGeneFlightless_ARD,JetzAll_ER,JetzAll_ARD,JetzAllFlightless_ER,JetzAllFlightless_ARD)
 
+ERLambdas<-Lambdas[Lambdas$Model=="ER",]
+ARDLambdas<-Lambdas[Lambdas$Model=="ARD",]
+
 ggplot(data=Lambdas,aes(y=Lambda,x=Tree,fill=Model))+geom_boxplot()+theme_bw()+scale_fill_grey()
 ggplot(data=Lambdas,aes(y=AIC,x=Tree,fill=Model))+geom_boxplot()+theme_bw()+scale_fill_grey()
+
+pdf("~/Dropbox/Flightless_project/Results/ERLambdas.pdf")
+ggplot(data=ERLambdas,aes(y=Lambda,x=Tree,fill=Model))+geom_boxplot(outlier.shape=NA,fill="transparent")+theme_bw()+geom_jitter(alpha=.1)+scale_fill_grey()
+dev.off()
+
+pdf("~/Dropbox/Flightless_project/Results/ARDLambdas.pdf")
+ggplot(data=ARDLambdas,aes(y=Lambda,x=Tree,fill=Model))+geom_boxplot(outlier.shape=NA,fill="transparent")+theme_bw()+geom_jitter(alpha=.1)+scale_fill_grey()
+dev.off()
+
+
 
 ##USE AIC values to calculate likelihood ratio for ARD vs ER models
 
