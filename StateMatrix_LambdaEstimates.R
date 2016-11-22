@@ -201,14 +201,18 @@ colnames(JAFFLam)<-c("Lambda","AIC")
 write.csv(JAFFLam,"~/Dropbox/Flightless_project/Results/JAFLambda_ER.csv")
 
 #Jetz all + flightless - lambda for flightlessness, All Rates Different model
+#Add all these parameters to the others
 
-JAFFLam_ARD<-matrix(nrow=length(JAFFlightLambda_ARD),ncol=2)
+JAFFLam_ARD<-matrix(nrow=length(JAFFlightLambda_ARD),ncol=5)
 
 for(i in 1:length(JAFFlightLambda_ARD)){
 	JAFFLam_ARD[i,1]<-JAFFlightLambda_ARD[[i]]$opt$lam
 	JAFFLam_ARD[i,2]<-JAFFlightLambda_ARD[[i]]$opt$aic
+	JAFFLam_ARD[i,3]<-JAFFlightLambda_ARD[[i]]$opt$q12
+	JAFFLam_ARD[i,4]<-JAFFlightLambda_ARD[[i]]$opt$q21
+	JAFFLam_ARD[i,5]<-JAFFlightLambda_ARD[[i]]$opt$lnL
 	}
-colnames(JAFFLam_ARD)<-c("Lambda","AIC")
+colnames(JAFFLam_ARD)<-c("Lambda","AIC","q12","q21","lnL")
 
 write.csv(JAFFLam_ARD,"~/Dropbox/Flightless_project/Results/JAFLambda_ARD.csv")
 
