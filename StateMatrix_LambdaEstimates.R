@@ -85,7 +85,6 @@ JAFFlightLambda_ARD<-llply(JAFBI,fitDiscrete,JAFFlight,transform="lambda",model=
 
 #Save lambda and AIC values for each model for each tree 
 
-##Save rate parameters too? If so - rerun this all over thanksgiving and save rate parameters
 
 BFLam_ER<-matrix(nrow=length(BurleighFlightLambda_ER),ncol=5)
 
@@ -292,14 +291,17 @@ ggplot(data=btest,aes(y=AIC,x=Model))+geom_boxplot(alpha=.1,outlier.shape=NA)+th
 index<-c(1:101,1:101,1:1000,1:1000,1:1000,1:1000,1:1000,1:1000,1:1000,1:1000)
 Lambdas$index<-index
 
+#plot AIC values
 pdf("~/Dropbox/Flightless_project/Results/AIC_values.pdf")
 ggplot(data=Lambdas,aes(y=AIC,x=Model))+facet_wrap(~Tree,scales="free",nrow=1)+theme_bw()+geom_line(aes(group=index),colour="black",alpha=.1,lwd=.015)+geom_point(cex=.5,alpha=.2)+theme(strip.text.x = element_text(size=7))
 dev.off()
 
+#plot lambdas under ER
 pdf("~/Dropbox/Flightless_project/Results/ERLambdas.pdf")
 ggplot(data=ERLambdas,aes(y=Lambda,x=Tree,fill=Model))+geom_boxplot(outlier.shape=NA,fill="transparent")+theme_bw()+geom_jitter(alpha=.1)+scale_fill_grey()
 dev.off()
 
+#plot lambdas under ARD
 pdf("~/Dropbox/Flightless_project/Results/ARDLambdas.pdf")
 ggplot(data=ARDLambdas,aes(y=Lambda,x=Tree,fill=Model))+geom_boxplot(outlier.shape=NA,fill="transparent")+theme_bw()+geom_jitter(alpha=.1)+scale_fill_grey()
 dev.off()
