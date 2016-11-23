@@ -259,7 +259,7 @@ JAF_ER<-read.csv("/Users/ryanterrill/Dropbox/Flightless_project/Results/JAFLambd
 JAF_ARD<-read.csv("/Users/ryanterrill/Dropbox/Flightless_project/Results/JAFLambda_ARD.csv")
 
 ### Compare ER to ARD models from AIC - present lambda from best (ARD) model in paper - but give lambda for ER and ARD, as well as AIC for each in supplemental
-
+##Need to add q12, q21, and logLik to these matrices
 
 Burleigh_ER<-data.frame(B_ER$Lambda,B_ER$AIC,"Burleigh","ER");names(Burleigh_ER)<-c("Lambda","AIC","Tree","Model")
 Burleigh_ARD<-data.frame(B_ARD$Lambda,B_ARD$AIC,"Burleigh","ARD");names(Burleigh_ARD)<-c("Lambda","AIC","Tree","Model")
@@ -278,7 +278,23 @@ ERLambdas<-Lambdas[Lambdas$Model=="ER",]
 ARDLambdas<-Lambdas[Lambdas$Model=="ARD",]
 
 ggplot(data=Lambdas,aes(y=Lambda,x=Tree,fill=Model))+geom_boxplot()+theme_bw()+scale_fill_grey()
+
 ggplot(data=Lambdas,aes(y=AIC,x=Tree,fill=Model))+geom_boxplot()+theme_bw()+scale_fill_grey()
+
+btest<-rbind(Burleigh_ER,Burleigh_ARD)
+btest<-btest[,-btest$Lambda]
+index<-1:101
+index<-c(index,index)
+btest$index<-index
+bt.m<-melt(btest,var="Tree","Model","index")
+ggplot(data=btest,aes(y=AIC,x=Model))+geom_boxplot(alpha=.1,outlier.shape=NA)+theme_bw()+geom_line(aes(group=index),colour="darkgray",alpha=.5,lwd=.5)+geom_point(cex=.5)
+
+index<-c(1:101,1:101,1:1000,1:1000,1:1000,1:1000,1:1000,1:1000,1:1000,1:1000)
+Lambdas$index<-index
+
+pdf("~/Dropbox/Flightless_project/Results/AIC_values.pdf")
+ggplot(data=Lambdas,aes(y=AIC,x=Model))+facet_wrap(~Tree,scales="free",nrow=1)+theme_bw()+geom_line(aes(group=index),colour="black",alpha=.1,lwd=.015)+geom_point(cex=.5,alpha=.2)+theme(strip.text.x = element_text(size=7))
+dev.off()
 
 pdf("~/Dropbox/Flightless_project/Results/ERLambdas.pdf")
 ggplot(data=ERLambdas,aes(y=Lambda,x=Tree,fill=Model))+geom_boxplot(outlier.shape=NA,fill="transparent")+theme_bw()+geom_jitter(alpha=.1)+scale_fill_grey()
