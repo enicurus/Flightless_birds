@@ -95,7 +95,7 @@ for(i in 1:length(BurleighFlightLambda_ER)){
 	BFLam_ER[i,4]<-BurleighFlightLambda_ER[[i]]$opt$q21
 	BFLam_ER[i,5]<-BurleighFlightLambda_ER[[i]]$opt$lnL
 	}
-colnames(BFLam_ER)<-c("Lambda","AIC")
+colnames(BFLam_ER)<-c("Lambda","AIC","q12","q21","lnL")
 
 write.csv(BFLam_ER,"~/Dropbox/Flightless_project/Results/BurleighLambda_ER.csv")
 
@@ -110,7 +110,7 @@ for(i in 1:length(BurleighFlightLambda_ARD)){
 	BFLam_ARD[i,4]<-BurleighFlightLambda_ARD[[i]]$opt$q21
 	BFLam_ARD[i,5]<-BurleighFlightLambda_ARD[[i]]$opt$lnL
 	}
-colnames(BFLam_ARD)<-c("Lambda","AIC")
+colnames(BFLam_ARD)<-c("Lambda","AIC","q12","q21","lnL")
 
 write.csv(BFLam_ARD,"~/Dropbox/Flightless_project/Results/BurleighLambda_ARD.csv")
 
@@ -126,7 +126,7 @@ for(i in 1:length(JGFlightLambda_ER)){
 	JGFLam_ER[i,4]<-JGFlightLambda_ER[[i]]$opt$q21
 	JGFLam_ER[i,5]<-JGFlightLambda_ER[[i]]$opt$lnL
 	}
-colnames(JGFLam_ER)<-c("Lambda","AIC")
+colnames(JGFLam_ER)<-c("Lambda","AIC","q12","q21","lnL")
 
 write.csv(JGFLam_ER,"~/Dropbox/Flightless_project/Results/JGLambda_ER.csv")
 
@@ -141,7 +141,7 @@ for(i in 1:length(JGFlightLambda_ARD)){
 	JGFLam_ARD[i,4]<-JGFlightLambda_ARD[[i]]$opt$q21
 	JGFLam_ARD[i,5]<-JGFlightLambda_ARD[[i]]$opt$lnL
 	}
-colnames(JGFLam_ARD)<-c("Lambda","AIC")
+colnames(JGFLam_ARD)<-c("Lambda","AIC","q12","q21","lnL")
 
 write.csv(JGFLam_ARD,"~/Dropbox/Flightless_project/Results/JGLambda_ARD.csv")
 
@@ -159,7 +159,7 @@ for(i in 1:length(JGFFlightLambda_ER)){
 	JGFFLam_ER[i,4]<-JGFFlightLambda_ER[[i]]$opt$q21
 	JGFFLam_ER[i,5]<-JGFFlightLambda_ER[[i]]$opt$lnL
 	}
-colnames(JGFFLam_ER)<-c("Lambda","AIC")
+colnames(JGFFLam_ER)<-c("Lambda","AIC","q12","q21","lnL")
 
 write.csv(JGFFLam_ER,"~/Dropbox/Flightless_project/Results/JGFLambda_ER.csv")
 
@@ -175,7 +175,7 @@ for(i in 1:length(JGFFlightLambda_ARD)){
 	JGFFLam_ARD[i,4]<-JGFFlightLambda_ARD[[i]]$opt$q21
 	JGFFLam_ARD[i,5]<-JGFFlightLambda_ARD[[i]]$opt$lnL
 	}
-colnames(JGFFLam_ARD)<-c("Lambda","AIC")
+colnames(JGFFLam_ARD)<-c("Lambda","AIC","q12","q21","lnL")
 
 write.csv(JGFFLam_ARD,"~/Dropbox/Flightless_project/Results/JGFLambda_ARD.csv")
  
@@ -191,7 +191,7 @@ for(i in 1:length(JAFlightLambda_ER)){
 	JAFLam_ER[i,4]<-JAFlightLambda_ER[[i]]$opt$q21
 	JAFLam_ER[i,5]<-JAFlightLambda_ER[[i]]$opt$lnL
 	}
-colnames(JAFLam_ER)<-c("Lambda","AIC")
+colnames(JAFLam_ER)<-c("Lambda","AIC","q12","q21","lnL")
 
 write.csv(JAFLam_ER,"~/Dropbox/Flightless_project/Results/JALambda_ER.csv")
 
@@ -207,7 +207,7 @@ for(i in 1:length(JAFlightLambda_ARD)){
 	JAFLam_ARD[i,5]<-JAFlightLambda_ARD[[i]]$opt$lnL
 	
 	}
-colnames(JAFLam_ARD)<-c("Lambda","AIC")
+colnames(JAFLam_ARD)<-c("Lambda","AIC","q12","q21","lnL")
 
 write.csv(JAFLam_ARD,"~/Dropbox/Flightless_project/Results/JALambda_ARD.csv")
 
@@ -223,7 +223,7 @@ for(i in 1:length(JAFFlightLambda_ER)){
 	JAFFLam_ER[i,4]<-JAFFlightLambda_ER[[i]]$opt$q21
 	JAFFLam_ER[i,5]<-JAFFlightLambda_ER[[i]]$opt$lnL
 	}
-colnames(JAFFLam_ER)<-c("Lambda","AIC")
+colnames(JAFFLam_ER)<-c("Lambda","AIC","q12","q21","lnL")
 
 write.csv(JAFFLam_ER,"~/Dropbox/Flightless_project/Results/JAFLambda_ER.csv")
 
