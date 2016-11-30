@@ -260,16 +260,16 @@ JAF_ARD<-read.csv("/Users/ryanterrill/Dropbox/Flightless_project/Results/JAFLamb
 ### Compare ER to ARD models from AIC - present lambda from best (ARD) model in paper - but give lambda for ER and ARD, as well as AIC for each in supplemental
 ##Need to add q12, q21, and logLik to these matrices
 
-Burleigh_ER<-data.frame(B_ER$Lambda,B_ER$AIC,"Burleigh","ER");names(Burleigh_ER)<-c("Lambda","AIC","Tree","Model")
-Burleigh_ARD<-data.frame(B_ARD$Lambda,B_ARD$AIC,"Burleigh","ARD");names(Burleigh_ARD)<-c("Lambda","AIC","Tree","Model")
-JetzGene_ER<-data.frame(JG_ER$Lambda,JG_ER$AIC,"Jetz_gene","ER");names(JetzGene_ER)<-c("Lambda","AIC","Tree","Model")
-JetzGene_ARD<-data.frame(JG_ARD$Lambda,JG_ARD$AIC,"Jetz_gene","ARD");names(JetzGene_ARD)<-c("Lambda","AIC","Tree","Model")
-JetzGeneFlightless_ER<-data.frame(JGF_ER$Lambda,JGF_ER$AIC,"Jetz_gene_flightless","ER");names(JetzGeneFlightless_ER)<-c("Lambda","AIC","Tree","Model")
-JetzGeneFlightless_ARD<-data.frame(JGF_ARD$Lambda,JGF_ARD$AIC,"Jetz_gene_flightless","ARD");names(JetzGeneFlightless_ARD)<-c("Lambda","AIC","Tree","Model")
-JetzAll_ER<-data.frame(JA_ER$Lambda,JA_ER$AIC,"Jetz_All","ER");names(JetzAll_ER)<-c("Lambda","AIC","Tree","Model")
-JetzAll_ARD<-data.frame(JA_ARD$Lambda,JA_ARD$AIC,"Jetz_All","ARD");names(JetzAll_ARD)<-c("Lambda","AIC","Tree","Model")
-JetzAllFlightless_ER<-data.frame(JAF_ER$Lambda,JAF_ER$AIC,"Jetz_All_flightless","ER");names(JetzAllFlightless_ER)<-c("Lambda","AIC","Tree","Model")
-JetzAllFlightless_ARD<-data.frame(JAF_ARD$Lambda,JAF_ARD$AIC,"Jetz_All_flightless","ARD");names(JetzAllFlightless_ARD)<-c("Lambda","AIC","Tree","Model")
+Burleigh_ER<-data.frame(B_ER,"Burleigh","ER");names(Burleigh_ER)<-c("pp","Lambda","AIC","q12","q21","lnL","Tree","Model")
+Burleigh_ARD<-data.frame(B_ARD,"Burleigh","ARD");names(Burleigh_ARD)<-c("pp","Lambda","AIC","q12","q21","lnL","Tree","Model")
+JetzGene_ER<-data.frame(JG_ER,"Jetz_gene","ER");names(JetzGene_ER)<-c("pp","Lambda","AIC","q12","q21","lnL","Tree","Model")
+JetzGene_ARD<-data.frame(JG_ARD,"Jetz_gene","ARD");names(JetzGene_ARD)<-c("pp","Lambda","AIC","q12","q21","lnL","Tree","Model")
+JetzGeneFlightless_ER<-data.frame(JGF_ER,"Jetz_gene_flightless","ER");names(JetzGeneFlightless_ER)<-c("pp","Lambda","AIC","q12","q21","lnL","Tree","Model")
+JetzGeneFlightless_ARD<-data.frame(JGF,"Jetz_gene_flightless","ARD");names(JetzGeneFlightless_ARD)<-c("pp","Lambda","AIC","q12","q21","lnL","Tree","Model")
+JetzAll_ER<-data.frame(JA_ER,"Jetz_All","ER");names(JetzAll_ER)<-c("pp","Lambda","AIC","q12","q21","lnL","Tree","Model")
+JetzAll_ARD<-data.frame(JA_ARD,"Jetz_All","ARD");names(JetzAll_ARD)<-c("pp","Lambda","AIC","q12","q21","lnL","Tree","Model")
+JetzAllFlightless_ER<-data.frame(JAF_ER,"Jetz_All_flightless","ER");names(JetzAllFlightless_ER)<-c("pp","Lambda","AIC","q12","q21","lnL","Tree","Model")
+JetzAllFlightless_ARD<-data.frame(JAF_ARD,"Jetz_All_flightless","ARD");names(JetzAllFlightless_ARD)<-c("pp","Lambda","AIC","q12","q21","lnL","Tree","Model")
 
 Lambdas<-rbind(Burleigh_ER,Burleigh_ARD,JetzGene_ER,JetzGene_ARD,JetzGeneFlightless_ER,JetzGeneFlightless_ARD,JetzAll_ER,JetzAll_ARD,JetzAllFlightless_ER,JetzAllFlightless_ARD)
 
