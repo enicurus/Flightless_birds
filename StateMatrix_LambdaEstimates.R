@@ -311,6 +311,55 @@ ggplot(data=ARDLambdas,aes(y=Lambda,x=Tree,fill=Model))+geom_boxplot(outlier.sha
 dev.off()
 
 
+#Plot transition parameter values under ER
+pdf("~/Dropbox/Flightless_project/Results/ERtransitionparameters.pdf")
+ggplot(data=ERLambdas,aes(y=log(q21),x=Tree,fill=Model))+geom_boxplot(outlier.shape=NA,fill="transparent")+theme_bw()+geom_jitter(alpha=.1)+scale_fill_grey()
+dev.off()
+
+
+#Plot transition parameter values under ARD
+ARDpar<-data.frame(ARDLambdas$q12,ARDLambdas$q21,ARDLambdas$Tree,ARDLambdas$Model);names(ARDpar)<-c("gains","losses","Tree","Model")
+##rmove some outliers for plotting
+ARDpar$losses[ARDpar$Tree=="Jetz_gene" & ARDpar$losses>.5]<-NA
+ARDpar$losses[ARDpar$Tree=="Jetz_gene_flightless" & ARDpar$losses>.5]<-NA
+ARDpar$losses[ARDpar$Tree=="Jetz_All" & ARDpar$losses>.5]<-NA
+ARDpar$losses[ARDpar$Tree=="Jetz_All_flightless" & ARDpar$losses>.5]<-NA
+ARDpar$gains[ARDpar$Tree=="Jetz_gene" & ARDpar$gains>.03]<-NA
+ARDpar$gains[ARDpar$Tree=="Jetz_gene_flightless" & ARDpar$gains>.1]<-NA
+ARDpar$gains[ARDpar$Tree=="Jetz_All" & ARDpar$gains>.1]<-NA
+ARDpar$gains[ARDpar$Tree=="Jetz_All_flightless" & ARDpar$gains>.1]<-NA
+
+
+ADP.m<-melt(ARDpar);names(ADP.m)<-c("Tree","Model","Flight","value")
+
+
+
+pdf("~/Dropbox/Flightless_project/Results/Brown_ARD_values_free.pdf")
+ggplot(data=ADP.m,aes(y=value,x=Flight))+facet_wrap(~Tree,scales="free",nrow=1)+theme_bw()+geom_line(aes(group=index),colour="black",alpha=.1,lwd=.015)+geom_point(cex=.5,alpha=.2)+theme(strip.text.x = element_text(size=7))+geom_boxplot(fill="transparent",outlier.shape=NA,lwd=.1)+ theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+panel.background = element_blank(), axis.line = element_line(colour = "black"))
+dev.off()
+
+
+pdf("~/Dropbox/Flightless_project/Results/Brown_ARD_values_fixed_log.pdf")
+ggplot(data=ADP.m,aes(y=log(value+1,base=100),x=variable))+facet_wrap(~Tree,scales="fixed",nrow=1)+theme_bw()+geom_line(aes(group=index),colour="black",alpha=.1,lwd=.015)+geom_point(cex=.5,alpha=.2)+theme(strip.text.x = element_text(size=7))+geom_boxplot(fill="transparent",outlier.shape=NA,lwd=.1)+ theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+panel.background = element_blank(), axis.line = element_line(colour = "black"))
+dev.off()
+
+
+
+#Plot log-Lik values
+pdf("~/Dropbox/Flightless_project/Results/logLik_values_fixed.pdf")
+ggplot(data=Lambdas,aes(y=lnL,x=Model))+facet_wrap(~Tree,scales="fixed",nrow=1)+theme_bw()+geom_line(aes(group=index),colour="black",alpha=.05,lwd=.015)+geom_point(cex=.5,alpha=.2)+theme(strip.text.x = element_text(size=7))+geom_boxplot(fill="transparent",outlier.shape=NA,lwd=.1)+ theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+panel.background = element_blank(), axis.line = element_line(colour = "black"))
+dev.off()
+
+
+#Plot log-Lik values
+pdf("~/Dropbox/Flightless_project/Results/logLik_values_free.pdf")
+ggplot(data=Lambdas,aes(y=lnL,x=Model))+facet_wrap(~Tree,scales="free",nrow=1)+theme_bw()+geom_line(aes(group=index),colour="black",alpha=.05,lwd=.015)+geom_point(cex=.5,alpha=.2)+theme(strip.text.x = element_text(size=7))+geom_boxplot(fill="transparent",outlier.shape=NA,lwd=.1)+ theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+panel.background = element_blank(), axis.line = element_line(colour = "black"))
+dev.off()
+
 
 ##USE AIC values to calculate likelihood ratio for ARD vs ER models
 
@@ -353,29 +402,6 @@ colnames(treeLambdas)<-c("Burleigh","Jetz Gene","Jetz Gene +\n Flightless","Jetz
 tl.melt<-melt(treeLambdas)
 ggplot(data=tl.melt,aes(x=variable,y=value))+geom_boxplot()+theme_bw()+theme(axis.title.x=element_blank())+ylab("Lambda - Flightlessness")
 ggsave("/Users/ryanterrill/Dropbox/Flightless_project/Manuscript/Lambda_trees.pdf")
-
-
-#### transition parameters
-JAFFLam<-matrix(nrow=length(JAFFlightLambda),ncol=2)
-
-BrownPar<-matrix(ncol=5,nrow=1000)
-for(i in 1:100){
-	BrownPar[i,1]<-BurleighFlightLambda[[i]]$opt$q12
-	for (j in 101:1000){BrownPar[i,1]<NA
-	}
-	}
-for(i in 1:1000){
-	BrownPar[i,2]<-JGFlightLambda[[i]]$opt$q12
-	BrownPar[i,3]<-JGFFlightLambda[[i]]$opt$q12
-	BrownPar[i,4]<-JAFlightLambda[[i]]$opt$q12
-	BrownPar[i,5]<-JAFFlightLambda[[i]]$opt$q12	
-}
-
-colnames(BrownPar)<-c("Burleigh","Jetz Gene","Jetz Gene +\n Flightless","Jetz All","Jetz All +\n Flightless")
-
-bp.melt<-melt(BrownPar)
-ggplot(data=bp.melt,aes(x=X2,y=log(value)))+geom_boxplot()+theme_bw()+theme(axis.title.x=element_blank())+ylab("Brownian Rate Parameter - Loss of FLight")
-ggsave("/Users/ryanterrill/Dropbox/Flightless_project/Manuscript/Brownian_rate_parameter_trees.pdf")
 
 
 
