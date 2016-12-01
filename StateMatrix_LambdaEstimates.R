@@ -273,6 +273,8 @@ JetzAllFlightless_ARD<-data.frame(JAF_ARD,"Jetz_All_flightless","ARD");names(Jet
 
 Lambdas<-rbind(Burleigh_ER,Burleigh_ARD,JetzGene_ER,JetzGene_ARD,JetzGeneFlightless_ER,JetzGeneFlightless_ARD,JetzAll_ER,JetzAll_ARD,JetzAllFlightless_ER,JetzAllFlightless_ARD)
 
+
+
 ERLambdas<-Lambdas[Lambdas$Model=="ER",]
 ARDLambdas<-Lambdas[Lambdas$Model=="ARD",]
 
@@ -290,6 +292,7 @@ ggplot(data=btest,aes(y=AIC,x=Model))+geom_boxplot(alpha=.1,outlier.shape=NA)+th
 
 index<-c(1:101,1:101,1:1000,1:1000,1:1000,1:1000,1:1000,1:1000,1:1000,1:1000)
 Lambdas$index<-index
+
 
 #plot AIC values
 pdf("~/Dropbox/Flightless_project/Results/AIC_values.pdf")
