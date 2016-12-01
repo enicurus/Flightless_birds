@@ -265,7 +265,7 @@ Burleigh_ARD<-data.frame(B_ARD,"Burleigh","ARD");names(Burleigh_ARD)<-c("pp","La
 JetzGene_ER<-data.frame(JG_ER,"Jetz_gene","ER");names(JetzGene_ER)<-c("pp","Lambda","AIC","q12","q21","lnL","Tree","Model")
 JetzGene_ARD<-data.frame(JG_ARD,"Jetz_gene","ARD");names(JetzGene_ARD)<-c("pp","Lambda","AIC","q12","q21","lnL","Tree","Model")
 JetzGeneFlightless_ER<-data.frame(JGF_ER,"Jetz_gene_flightless","ER");names(JetzGeneFlightless_ER)<-c("pp","Lambda","AIC","q12","q21","lnL","Tree","Model")
-JetzGeneFlightless_ARD<-data.frame(JGF,"Jetz_gene_flightless","ARD");names(JetzGeneFlightless_ARD)<-c("pp","Lambda","AIC","q12","q21","lnL","Tree","Model")
+JetzGeneFlightless_ARD<-data.frame(JGF_ARD,"Jetz_gene_flightless","ARD");names(JetzGeneFlightless_ARD)<-c("pp","Lambda","AIC","q12","q21","lnL","Tree","Model")
 JetzAll_ER<-data.frame(JA_ER,"Jetz_All","ER");names(JetzAll_ER)<-c("pp","Lambda","AIC","q12","q21","lnL","Tree","Model")
 JetzAll_ARD<-data.frame(JA_ARD,"Jetz_All","ARD");names(JetzAll_ARD)<-c("pp","Lambda","AIC","q12","q21","lnL","Tree","Model")
 JetzAllFlightless_ER<-data.frame(JAF_ER,"Jetz_All_flightless","ER");names(JetzAllFlightless_ER)<-c("pp","Lambda","AIC","q12","q21","lnL","Tree","Model")
@@ -293,7 +293,8 @@ Lambdas$index<-index
 
 #plot AIC values
 pdf("~/Dropbox/Flightless_project/Results/AIC_values.pdf")
-ggplot(data=Lambdas,aes(y=AIC,x=Model))+facet_wrap(~Tree,scales="free",nrow=1)+theme_bw()+geom_line(aes(group=index),colour="black",alpha=.1,lwd=.015)+geom_point(cex=.5,alpha=.2)+theme(strip.text.x = element_text(size=7))
+ggplot(data=Lambdas,aes(y=AIC,x=Model))+facet_wrap(~Tree,scales="free",nrow=1)+theme_bw()+geom_line(aes(group=index),colour="black",alpha=.1,lwd=.015)+geom_point(cex=.5,alpha=.2)+theme(strip.text.x = element_text(size=7))+geom_boxplot(fill="transparent",outlier.shape=NA,lwd=.1)+ theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+panel.background = element_blank(), axis.line = element_line(colour = "black"))
 dev.off()
 
 #plot lambdas under ER
