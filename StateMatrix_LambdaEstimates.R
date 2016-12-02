@@ -330,14 +330,10 @@ ARDpar$gains[ARDpar$Tree=="Jetz_All" & ARDpar$gains>.1]<-NA
 ARDpar$gains[ARDpar$Tree=="Jetz_All_flightless" & ARDpar$gains>.1]<-NA
 
 
-ADP.m<-melt(ARDpar);names(ADP.m)<-c("Tree","Model","Flight","value")
+ADP.m<-melt(ARDpar);names(ADP.m)<-c("Tree","Model","Flight","Transition_Rate")
 
 
 
-pdf("~/Dropbox/Flightless_project/Results/Brown_ARD_values_free.pdf")
-ggplot(data=ADP.m,aes(y=value,x=Flight))+facet_wrap(~Tree,scales="free",nrow=1)+theme_bw()+geom_line(aes(group=index),colour="black",alpha=.1,lwd=.015)+geom_point(cex=.5,alpha=.2)+theme(strip.text.x = element_text(size=7))+geom_boxplot(fill="transparent",outlier.shape=NA,lwd=.1)+ theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-panel.background = element_blank(), axis.line = element_line(colour = "black"))
-dev.off()
 
 
 pdf("~/Dropbox/Flightless_project/Results/Brown_ARD_values_fixed_log.pdf")
@@ -349,14 +345,14 @@ dev.off()
 
 #Plot log-Lik values
 pdf("~/Dropbox/Flightless_project/Results/logLik_values_fixed.pdf")
-ggplot(data=Lambdas,aes(y=lnL,x=Model))+facet_wrap(~Tree,scales="fixed",nrow=1)+theme_bw()+geom_line(aes(group=index),colour="black",alpha=.05,lwd=.015)+geom_point(cex=.5,alpha=.2)+theme(strip.text.x = element_text(size=7))+geom_boxplot(fill="transparent",outlier.shape=NA,lwd=.1)+ theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+ggplot(data=Lambdas,aes(y=lnL,x=Model))+facet_wrap(~Tree,scales="fixed",nrow=1)+theme_bw()+geom_line(aes(group=index),colour="black",alpha=.05,lwd=.015)+geom_point(size=.01,alpha=.2)+theme(strip.text.x = element_text(size=7))+geom_boxplot(fill="transparent",outlier.shape=NA,lwd=.1)+ theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
 panel.background = element_blank(), axis.line = element_line(colour = "black"))
 dev.off()
 
 
 #Plot log-Lik values
 pdf("~/Dropbox/Flightless_project/Results/logLik_values_free.pdf")
-ggplot(data=Lambdas,aes(y=lnL,x=Model))+facet_wrap(~Tree,scales="free",nrow=1)+theme_bw()+geom_line(aes(group=index),colour="black",alpha=.05,lwd=.015)+geom_point(cex=.5,alpha=.2)+theme(strip.text.x = element_text(size=7))+geom_boxplot(fill="transparent",outlier.shape=NA,lwd=.1)+ theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+ggplot(data=Lambdas,aes(y=lnL,x=Model))+facet_wrap(~Tree,scales="free",nrow=1)+theme_bw()+geom_line(aes(group=index),colour="black",alpha=.05,lwd=.015)+geom_point(size=.01,alpha=.05)+theme(strip.text.x = element_text(size=7))+geom_boxplot(fill="transparent",outlier.shape=NA,lwd=.1)+ theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
 panel.background = element_blank(), axis.line = element_line(colour = "black"))
 dev.off()
 
