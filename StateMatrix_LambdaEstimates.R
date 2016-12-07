@@ -53,7 +53,7 @@ JGF.f<-JGFstates[JGFstates$flight==0,]
 JGF.drop<-setdiff(JGF.f$treeTips,JG.f$treeTips)
 JGF<-llply(JGF,drop.tip,JGF.drop,.progress="text")
 class(JGF)<-"multiPhylo"
-write.nexus(JGF,file=""/Users/ryanterrill/Dropbox/Flightless_project/Trees/All_Birds/JGF.nexus")
+write.nexus(JGF,file="/Users/ryanterrill/Dropbox/Flightless_project/Trees/All_Birds/JGF.nexus")
 
 
 BurFlight<-matrix(Bstates$flight);rownames(BurFlight)<-Bstates$treeTips
