@@ -33,7 +33,7 @@ simultaneous<-S$V1
 
 
 Burleigh<-read.tree("~/Dropbox/Flightless_project/Trees/All_Birds/Burleigh/Burleigh.tre")
-JG<-read.nexus("~/Dropbox/Flightless_project/Trees/All_Birds/Jetz_gene.nex")
+JG<-read.nexus("~/Dropbox/Flightless_project/Trees/All_Birds/JetzGene.nex")
 JGF<-read.nexus("/Users/ryanterrill/Dropbox/Flightless_project/Trees/All_Birds/JGF.nexus")
 
 
