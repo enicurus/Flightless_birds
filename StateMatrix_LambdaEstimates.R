@@ -34,10 +34,12 @@ simultaneous<-S$V1
 
 Burleigh<-read.tree("~/Dropbox/Flightless_project/Trees/All_Birds/Burleigh/Burleigh.tre")
 JG<-read.nexus("~/Dropbox/Flightless_project/Trees/All_Birds/Jetz_gene.nex")
-JGF<-read.nexus("/Users/ryanterrill/Dropbox/Flightless_project/Trees/All_Birds/Jetz_gene_flightless.nex")
+JGF<-read.nexus("/Users/ryanterrill/Dropbox/Flightless_project/Trees/All_Birds/JGF.nexus")
+
+
 
 JA<-read.nexus("~/Dropbox/Flightless_project/Trees/All_Birds/Jetz_all.nex")
-JAF<-read.nexus("~/Dropbox/Flightless_project/Trees/All_Birds/Jetz_all_flightless.nex")
+JAF<-read.nexus("~/Dropbox/Flightless_project/Trees/All_Birds/Jetz_all_Flightless.nex")
 
 Bstates<-stateMatrix(Burleigh,flightless,simultaneous)
 JGstates<-stateMatrix(JG,flightless,simultaneous)
@@ -45,7 +47,12 @@ JGFstates<-stateMatrix(JGF,flightless,simultaneous)
 JAstates<-stateMatrix(JA,flightless,simultaneous)
 JAFstates<-stateMatrix(JAF,flightless,simultaneous)
 
-
+##drop flying non-gene tips from JGF
+JG.f<-JGstates[JGstates$flight==0,]
+JGF.f<-JGFstates[JGFstates$flight==0,]
+JGF.drop<-setdiff(JGF.f$treeTips,JG.f$treeTips)
+JGF<-llply(JGF,drop.tip,JGF.drop,.progress="text")
+class(JGF)<-"multiPhylo"
 
 
 BurFlight<-matrix(Bstates$flight);rownames(BurFlight)<-Bstates$treeTips
