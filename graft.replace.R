@@ -73,3 +73,15 @@ graft.replace<-function(backBoneTree,cladeTree){
 class(dt)<-"multiPhylo"	
 return(dt)
 }
+		
+		
+		
+		
+##drop flying non-gene tips from JGF
+JG.f<-JGstates[JGstates$flight==0,]
+JGF.f<-JGFstates[JGFstates$flight==0,]
+JGF.drop<-setdiff(JGF.f$treeTips,JG.f$treeTips)
+JGF<-llply(JGF,drop.tip,JGF.drop,.progress="text")
+class(JGF)<-"multiPhylo"
+write.nexus(JGF,file="/Users/ryanterrill/Dropbox/Flightless_project/Trees/All_Birds/JGF.nexus")
+
