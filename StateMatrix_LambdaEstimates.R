@@ -358,6 +358,10 @@ panel.background = element_blank(), axis.line = element_line(colour = "black"))
 dev.off()
 
 
+###Calculate and plot likelihood ratios
+
+
+
 ##USE AIC values to calculate likelihood ratio for ARD vs ER models
 
 Burleigh_model_likelihood<-exp((B_ARD$AIC-B_ER$AIC)/2)
