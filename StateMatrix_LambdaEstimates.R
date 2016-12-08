@@ -318,8 +318,12 @@ ggplot(data=ERLambdas,aes(y=log(q21),x=Tree,fill=Model))+geom_boxplot(outlier.sh
 dev.off()
 
 
+
+
 #Plot transition parameter values under ARD
-ARDpar<-data.frame(ARDLambdas$q12,ARDLambdas$q21,ARDLambdas$Tree,ARDLambdas$Model);names(ARDpar)<-c("gains","losses","Tree","Model")
+ARDpar<-data.frame(ARDLambdas$q12,ARDLambdas$q21,ARDLambdas$Tree,ARDLambdas$pp);names(ARDpar)<-c("gains","losses","Tree","Index")
+
+
 ##rmove some outliers for plotting
 ARDpar$losses[ARDpar$Tree=="Jetz_gene" & ARDpar$losses>.5]<-NA
 ARDpar$losses[ARDpar$Tree=="Jetz_gene_flightless" & ARDpar$losses>.5]<-NA
@@ -329,6 +333,18 @@ ARDpar$gains[ARDpar$Tree=="Jetz_gene" & ARDpar$gains>.03]<-NA
 ARDpar$gains[ARDpar$Tree=="Jetz_gene_flightless" & ARDpar$gains>.1]<-NA
 ARDpar$gains[ARDpar$Tree=="Jetz_All" & ARDpar$gains>.1]<-NA
 ARDpar$gains[ARDpar$Tree=="Jetz_All_flightless" & ARDpar$gains>.1]<-NA
+
+
+ARD.m<-melt(ARDpar,id=c("Tree","Index"))
+
+
+###Plot Brownian Rate parameters under ARD
+
+pdf("~/Dropbox/Flightless_project/Results/Brown_ARD_values_free.pdf")
+ggplot(data=ARD.m,aes(y=value,x=variable))+facet_wrap(~Tree,scales="free",nrow=1)+theme_bw()+geom_line(aes(group=Index),colour="black",alpha=.1,lwd=.015)+geom_point(cex=.5,alpha=.2)+theme(strip.text.x = element_text(size=7))+ theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+labs(x="Flight",y="Transition Rate")
+dev.off()
+
 
 
 ADP.m<-melt(ARDpar);names(ADP.m)<-c("Tree","Model","Flight","Transition_Rate")
@@ -359,6 +375,13 @@ dev.off()
 
 
 ###Calculate and plot likelihood ratios
+lr<-data.frame(Lambdas$lnL[Lambdas$Model=="ER"],Lambdas$lnL[Lambdas$Model=="ARD"],Lambdas$Tree[Lambdas$Model=="ER"])
+names(lr)<-c("ER","ARD","Tree")
+lr$lrt<-1-pchisq(2*(lr$ARD-lr$ER),1)
+lrt<-data.frame(lr$lrt,lr$Tree)
+names(lrt)<-c("lrt","Tree")
+
+ggplot(data=lrt,aes(y=lrt,x=Tree)+geom_boxplot(outlier.shape=NA,fill="transparent")+theme_bw()+geom_jitter(alpha=.1)+scale_fill_grey()
 
 
 
